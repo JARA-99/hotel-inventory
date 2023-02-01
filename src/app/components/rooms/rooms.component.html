@@ -1,0 +1,51 @@
+<mat-card class="layout">
+  <mat-card-title>
+    {{ title }}
+  </mat-card-title>
+
+  <div [hidden]="hideRooms">
+    <label>
+      Number of Rooms:
+      <span [innerHTML]="numberOfRooms"></span>
+    </label>
+  </div>
+
+  {{ !rooms.availableRooms ? "No rooms" : "" }}
+
+  <div *ngIf="rooms.availableRooms">
+    <h2>Rooms List</h2>
+
+    <table>
+      <tr>
+        <th>Index</th>
+
+        <th>Even/Odd</th>
+
+        <th>Room Number</th>
+
+        <th>Room Type</th>
+
+        <th>Room Price</th>
+
+        <th>Room Amenities</th>
+
+        <th>Checkin Time</th>
+      </tr>
+      <tr
+        *ngFor="let room of roomList; let e = even; let o = odd; let i = index"
+      >
+        <td>{{ i }}</td>
+        <td>{{ e ? "Even" : "Odd" }}</td>
+        <td>{{ room.roomNumber }}</td>
+        <td>{{ room.roomType }}</td>
+        <td>{{ room.price }}</td>
+        <td>{{ room.amenities }}</td>
+        <td>{{ room.checkinTime }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <button mat-raised-button class="btn" (click)="toggle()" color="warn">
+    Toggle
+  </button>
+</mat-card>
